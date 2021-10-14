@@ -1,0 +1,13 @@
+name: covind19
+title: covind19
+username:
+account: mmsalva
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 4865102
+bundleId: 5136123
+url: https://mmsalva.shinyapps.io/covind19/
+when: 1634157540.36395
+lastSyncTime: 1634157540.36396
+asMultiple: FALSE
+asStatic: FALSE

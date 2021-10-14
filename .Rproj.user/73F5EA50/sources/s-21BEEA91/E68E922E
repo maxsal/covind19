@@ -1,0 +1,27 @@
+{
+    "id": "E68E922E",
+    "path": "~/Documents/projects/covid/covind19/plot_functions/state_daily_barplot.R",
+    "project_path": "plot_functions/state_daily_barplot.R",
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1634152332413.0,
+    "source_on_save": false,
+    "relative_order": 9,
+    "properties": {
+        "tempName": "Untitled1",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "1,0",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1634152834,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1634152834350,
+    "read_only": false,
+    "read_only_alternatives": []
+}

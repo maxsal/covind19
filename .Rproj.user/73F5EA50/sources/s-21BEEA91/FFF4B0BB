@@ -1,0 +1,26 @@
+{
+    "id": "FFF4B0BB",
+    "path": "~/Documents/projects/covid/covind19/ui.R",
+    "project_path": "ui.R",
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1634072213055.0,
+    "source_on_save": false,
+    "relative_order": 7,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "2,18",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1634072250,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1634072250225,
+    "read_only": false,
+    "read_only_alternatives": []
+}
