@@ -4,14 +4,31 @@ library("glue")
 library("janitor")
 library("lubridate")
 library("gt")
-library("vroom")
 library("covid19india")
+library(data.table)
 
 snapshot <- function() {
   # functions -----------
   get_snap <- function(t = NULL) {
 
-    nat <- get_nat_counts()[]
+    state <- get_state_counts(mohfw = TRUE)[, .(place, date, total_cases, total_recovered, total_deaths, total_active)]
+
+    quick_fix <- function(x) {
+      x1 <- x[date <= "2021-10-12"][, !c("total_active")]
+      x2 <- x[date >= "2021-10-13"][, .(place, date, total_cases, total_recovered, total_deaths = total_active)][]
+      x3 <- rbindlist(list(x1, x2), fill = TRUE)
+      x3 <- x3[, lapply(.SD, sum, na.rm = TRUE), by = "date", .SDcols = c("total_cases", "total_deaths", "total_recovered")]
+      x3 <- x3[order(date), `:=` (
+        daily_cases = total_cases - shift(total_cases),
+        daily_recovered = total_recovered - shift(total_recovered),
+        daily_deaths = total_deaths - shift(total_deaths)
+      )][]
+
+      x3
+
+    }
+
+    nat <- quick_fix(state)
 
     vax_dat <- get_state_vax()[date <= nat[, max(date)]][place == "India", .(date, daily_doses)][, lag := daily_doses][]
 
