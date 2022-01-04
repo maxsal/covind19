@@ -5,7 +5,7 @@ suppressPackageStartupMessages({
   library(plotly)
 })
 
-case_death_country_comp <- function(start.date = as.Date(Sys.getenv("today")) - 365)
+case_death_country_comp <- function(start.date = as.Date(Sys.getenv("today")) - 365, span = 0.025)
 {
   Day_max          <- 100
   cases_threshold  <- 100
@@ -62,7 +62,7 @@ combined <- rbindlist(list(
       , text := paste0(Country, "<br>", Date, ": ", Cases_fmt,
                        " incident cases<br>")
     ][,
-      loess_cases := c(0, predict(loess(formula = Incident_Cases ~ Day, span = 0.15))), by = "Country"][
+      loess_cases := c(0, predict(loess(formula = Incident_Cases ~ Day, span = span))), by = "Country"][
         Country != "India",
         .(Country, Date, Incident_Cases, Cases_fmt, text, loess_cases, Day)][]
 
@@ -79,7 +79,7 @@ combined <- rbindlist(list(
       , text := paste0(Country, "<br>", Date, ": ", Deaths_fmt,
                        " incident deaths<br>")
     ][,
-      loess_deaths := c(0, predict(loess(formula = Incident_Deaths ~ Day, span = 0.15))), by = "Country"][
+      loess_deaths := c(0, predict(loess(formula = Incident_Deaths ~ Day, span = span))), by = "Country"][
         Country != "India",
         .(Country, Date, Incident_Deaths, Deaths_fmt, text, loess_deaths, Day)][]
 
@@ -97,7 +97,7 @@ combined <- rbindlist(list(
     , text := paste0(Country, "<br>", Date, ": ", Cases_fmt,
                      " incident cases<br>")
   ][
-    , loess_cases := c(predict(loess(formula = Incident_Cases ~ Day, span = 0.15)))
+    , loess_cases := c(predict(loess(formula = Incident_Cases ~ Day, span = span)))
   ][, .(Country, Date, Incident_Cases, Cases_fmt, text, loess_cases, Day)]
 
   india_deaths <- india_data[total_deaths >= deaths_threshold][
@@ -111,7 +111,7 @@ combined <- rbindlist(list(
     , text := paste0(Country, "<br>", Date, ": ", Deaths_fmt,
                      " incident deaths<br>")
   ][
-    , loess_deaths := c(predict(loess(formula = Incident_Deaths ~ Day, span = 0.15)))
+    , loess_deaths := c(predict(loess(formula = Incident_Deaths ~ Day, span = span)))
   ][, .(Country, Date, Incident_Deaths, Deaths_fmt, text, loess_deaths, Day)]
 
   # combine ----------
